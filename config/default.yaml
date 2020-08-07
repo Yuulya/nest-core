@@ -1,0 +1,10 @@
+server:
+  host: 127.0.0.1
+  port: 3000
+
+
+externalServices:
+  paymentService:
+
+mongodb:
+  uri: mongodb://127.0.0.1:27017/test
