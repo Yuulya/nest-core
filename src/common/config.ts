@@ -1,7 +1,6 @@
 import {config as dotenvConfig} from 'dotenv';
 dotenvConfig();
 
-
 import * as config from 'config';
 
 export function getPort(): number{
@@ -10,4 +9,8 @@ export function getPort(): number{
 
 export function getHost(): string {
   return `${config.get('server.host')}`;
-};
+}
+
+export function getConfig() {
+  return config;
+}
