@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { writeFileSync } from 'fs';
-import { INestApplication } from '@nestjs/common';
+import { INestApplication, Logger } from '@nestjs/common';
 import {DocumentBuilder, SwaggerModule} from '@nestjs/swagger';
 import { getConfig, getHost, getPort } from './common/config';
 
@@ -38,5 +38,11 @@ export function initSwagger(app: INestApplication) {
   });
 }
 
+bootstrap().then(() => {
+  Logger.log(`Server started at http://${getHost()}:${getPort()}`);
+  Logger.log(`Swagger started at http://${getHost()}:${getPort()}/doc/orders`)
+  //console.log()
+}).catch(e => {
+  console.log(e)
+});
 
-bootstrap();
