@@ -1,10 +1,12 @@
-import { Controller, Post, Get, Body, Delete, Param } from '@nestjs/common';
+import { Controller, Post, Get, Body, Delete, Param, UseGuards } from '@nestjs/common';
 import {ApiTags} from '@nestjs/swagger';
 import { OrdersService } from './orders.service';
 import { CreateOrderDto } from './order.dto';
+import { PinTokenGuard } from '../../guards/pinToken.guard';
 
 @Controller('orders')
 @ApiTags('orders')
+@UseGuards(PinTokenGuard)
 export class OrderController {
   constructor(private readonly ordersService: OrdersService) {}
 

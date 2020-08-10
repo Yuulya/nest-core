@@ -1,6 +1,7 @@
 import { getConfig } from '../../common/config';
 import { HttpService, Injectable } from '@nestjs/common';
 import { map } from 'rxjs/operators';
+import { getMockData } from '../../_mock/_mockData';
 
 const config = getConfig();
 
@@ -17,6 +18,7 @@ export class ApiPaymentsService {
       params,
       {
         headers: {
+          'Access-Token': getMockData().backEndToken,
           'Content-Type': 'application/json',
         },
       }).pipe(map((res) => {
