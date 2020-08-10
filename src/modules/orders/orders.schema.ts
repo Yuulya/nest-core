@@ -9,6 +9,9 @@ export const OrderSchema = new Schema<IOrder>(
     status: {
       type: String,
     },
+    details: {
+      type: Object,
+    },
     _deleted: {
       type: Boolean,
       default: false,

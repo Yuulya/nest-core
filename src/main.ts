@@ -3,16 +3,17 @@ import { AppModule } from './app.module';
 import { writeFileSync } from 'fs';
 import { INestApplication } from '@nestjs/common';
 import {DocumentBuilder, SwaggerModule} from '@nestjs/swagger';
-import { getHost, getPort } from './common/config';
+import { getConfig, getHost, getPort } from './common/config';
 
 console.log(getPort())
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {cors: true, bodyParser: true});
+  app.setGlobalPrefix(getConfig().get('service.baseUrl'));
   app.enableCors();
 
   initSwagger(app);
-  await app.listen(3000);
+  await app.listen(getPort());
 }
 
 export function initSwagger(app: INestApplication) {
